@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Director } from "src/app/models/director.model";
 import { Locutor } from "src/app/models/locutor.model";
 import { Programa } from "src/app/models/programa.model";
+import { DirectorService } from "src/app/services/director.service";
 import { LocutorService } from "src/app/services/locutor.service";
 import { ProgramaService } from "src/app/services/programa.service";
 
@@ -9,7 +10,7 @@ import { ProgramaService } from "src/app/services/programa.service";
   selector: 'app-consultas',
   templateUrl: './consultas.component.html',
   styleUrls: ['./consultas.component.css'],
-  providers: [ProgramaService, LocutorService],
+  providers: [ProgramaService, LocutorService, DirectorService],
 })
 
 export class ConsultasComponent implements OnInit {
@@ -17,10 +18,11 @@ export class ConsultasComponent implements OnInit {
   public programa: Programa;               //<- Utilizado para enviar la carga de un programa nuevo
   public programas: Programa[];            //<- Cargado por getPeriodo();
   public locutores: Locutor[];
+  public directores: Director[];
   public programasPorLoc: Programa[];
   public programasPorFec: Programa[];
-  public programasPorFecLoc: Locutor[];
-  public programasPorFecDir: Director[];
+  public LocutorNombrePorId: Locutor[];
+  public DirectorNombrePorId: Director[];
   public locutortemp: Locutor;
   public progtemp: Programa;
   public fechaprograma: Date;
@@ -31,12 +33,14 @@ export class ConsultasComponent implements OnInit {
   constructor(
     private _locutorService: LocutorService,
     private _programaService: ProgramaService,
+    private _directorService: DirectorService,
   ) {
     this.programasPorLoc = new Array();
     this.programasPorFec = new Array();
-    this.programasPorFecLoc = new Array();
-    this.programasPorFecDir = new Array();
+    this.LocutorNombrePorId = new Array();
+    this.DirectorNombrePorId = new Array();
     this.locutores = new Array();                                  //<- Usada para cargar lista de locutores
+    this.directores = new Array();                                  //<- Usada para cargar lista de directores
     this.locutortemp = new Locutor("", "", "", "");                //<- Usada para cargar lista de locutores
     this.progtemp = new Programa('', '', new Date(), new Date(), new Date(), '', '');
     this.programas = new Array();
@@ -48,8 +52,9 @@ export class ConsultasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getLocutores();
     this.getProgramas();
+    this.getDirectores();
+    this.getLocutores();
   }
 
   getProgramas() {
@@ -78,14 +83,63 @@ export class ConsultasComponent implements OnInit {
     )
   }
 
+  getOneLocutor(id: number){
+    this._locutorService.getOneLocutor(id).subscribe(
+      response => {
+        if (response.locutor) {
+          this.LocutorNombrePorId.push(response.locutor);
+        }
+      },
+      error => {
+        console.log(<any>error);
+      }
+    )
+  }
+
+  getDirectores() {
+    this._directorService.getDirectores().subscribe(
+      response => {
+        if (response.directores) {
+          this.directores = response.directores;
+        }
+      },
+      error => {
+        console.log(<any>error);
+      }
+    )
+  }
+
+  getOneDirector(id: number){
+    this._directorService.getOneDirector(id).subscribe(
+      response => {
+        if (response.director) {
+          this.DirectorNombrePorId.push(response.director);
+        }
+      },
+      error => {
+        console.log(<any>error);
+      }
+    )
+  }
+
   getProgramasPorFecha() {
     this.programasPorFec = this.programas.filter(prog => prog.dia == this.fechaprograma);
 
-    // this.programasPorFec.filter(loc => loc.fklocutoresid == this.programasPorLoc[].fklocutoresid)
+    this.programasPorFec.forEach(idpersonal => {
+      this.getOneLocutor(parseInt(idpersonal.fklocutoresid));
+      this.getOneDirector(parseInt(idpersonal.fkdirectorid));
+    });
 
     // for(let i = 0; i < this.programasPorFec.length; i++){
-    //   this.programasPorFecLoc = this.locutores.filter(loc => loc.id == this.programasPorFec[i].fklocutoresid);
+    //   this.getOneLocutor(parseInt(this.programasPorFec[i].fklocutoresid));
     // }
+    
+    // for(let i = 0; i < this.programasPorFec.length; i++){
+    //   this.getOneDirector(parseInt(this.programasPorFec[i].fkdirectorid));
+    // }
+
+    console.log(this.LocutorNombrePorId);
+    console.log(this.DirectorNombrePorId);
 
     this.cargaProgFec = false;
   }

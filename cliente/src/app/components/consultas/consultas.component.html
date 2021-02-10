@@ -84,12 +84,16 @@
                 <th scope="col">Dia</th>
                 <th scope="col">Horario</th>
                 <th scope="col">Duracion</th>
-                <th scope="col">Director</th>
-                <th scope="col">Locutor</th>
+                <th scope="col">Director ID</th>
+                <th scope="col">Locutor ID</th>
+                <th scope="col">Director ID en tabla</th>
+                <th scope="col">Director Nombre</th>
+                <th scope="col">Locutor ID en tabla</th>
+                <th scope="col">Locutor Nombre</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let programa of programasPorFec">
+            <tr *ngFor="let programa of programasPorFec; index as i">
                 <td>
                     {{programa.tituloprograma}}
                 </td>
@@ -107,6 +111,18 @@
                 </td>
                 <td>
                     {{programa.fklocutoresid}}
+                </td>
+                <td>
+                    {{DirectorNombrePorId[i].id}}
+                </td>
+                <td>
+                    {{DirectorNombrePorId[i].nombre}}
+                </td>
+                <td>
+                    {{LocutorNombrePorId[i].id}}
+                </td>
+                <td>
+                    {{LocutorNombrePorId[i].nombre}}
                 </td>
             </tr>
         </tbody>

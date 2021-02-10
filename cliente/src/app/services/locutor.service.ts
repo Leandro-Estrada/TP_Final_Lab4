@@ -24,7 +24,11 @@ export class LocutorService {
     return this._http.get(this.url + 'locutores/', { headers: headers });
   }
 
-  getOneLocutor() { }
+  getOneLocutor(id: number): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this._http.get(this.url + 'locutores/'+id, { headers: headers });
+   }
 
   createLocutor(locutor: Locutor): Observable<any> {
     let params = JSON.stringify(locutor);

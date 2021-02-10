@@ -43,7 +43,6 @@ export class DirectorComponent implements OnInit {
       response => {
         if (response.directores) {
           this.directores = response.directores;
-          console.log(this.directores);
         }
       },
       error => {

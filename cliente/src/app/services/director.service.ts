@@ -24,7 +24,11 @@ export class DirectorService {
     return this._http.get(this.url + 'directores/', { headers: headers });
   }
 
-  getOneDirectores() { }
+  getOneDirector(id: number): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this._http.get(this.url + 'directores/'+id, { headers: headers });
+   }
 
   createDirector(director: Director): Observable<any> {
     let params = JSON.stringify(director);
@@ -37,7 +41,6 @@ export class DirectorService {
     let director2 = new Director('', director.apellido, director.nombre, director.dni);
 
     let params = JSON.stringify(director2);
-    console.log(params);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this._http.put(this.url+'directores/' + director.id, params,{headers: headers});
