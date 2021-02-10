@@ -23,3 +23,16 @@ __NodeJS__
 __PostgreSQL__
 __Clonar este repositorio en una carpeta local__
 
+###### Configuración del servidor
+npm install
+npm run dev
+
+###### Configuración del cliente
+npm install
+ng serve -o
+
+###### Probar desde localhost
+
+ejecutra chrome con **win + r** y luego
+
+**chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security**
