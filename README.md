@@ -1,8 +1,8 @@
 # TP_Final_Lab4
 
-##Trabajo Practico Final de la materia Laboratorio 4
+## Trabajo Practico Final de la materia Laboratorio 4
 
-##Gestion de Radio
+## Gestion de Radio
 
 Hacer un programa que permita administrar una radio: programas, propagandas, personal, temas.
 Un programa tiene un director, uno o mas locutores, un horario de emisión y una duración determinada.
