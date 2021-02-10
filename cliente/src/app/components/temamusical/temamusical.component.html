@@ -1,0 +1,70 @@
+<div class="container-fluid">
+    <!-------------------------------- Comienza formulario de carga -------------------------------->
+    <h2>Temas Musicales</h2>
+    <form #temaMusicalForm="ngForm" (ngSubmit)="onSubmit(temaMusicalForm)">
+        <div class="row" style="margin-left: 3px;">
+            <div class="col-xs-5">
+                <label class="form-label" for="name">Titulo:</label>
+                <input id="titulo" class="form-control" type="text" name="Titulo" placeholder="Titulo..." #titulo='ngModel'
+                    [(ngModel)]="temamusical.titulo" required>
+                <span class="form_error" *ngIf="titulo.touched && !titulo.valid">
+                    El titulo es obligatorio
+                </span>
+            </div>
+            <div class="col-xs-5" style="margin-left: 3px;">
+                <label class="form-label" for="autor">Autor:</label>
+                <input id="autor" class="form-control" type="text" name="Autor" placeholder="Autor..."
+                    #autor='ngModel' [(ngModel)]="temamusical.autor" required>
+                <span class="form_error" *ngIf="autor.touched && !autor.valid">
+                    El autor es obligatorio
+                </span>
+            </div>
+        </div>
+        <br>
+        <input id="nuevo" type="submit" class="btn btn-success" value="Nuevo temamusical" style="margin-left: 3px;"
+            [disabled]="!temaMusicalForm.form.valid" />&nbsp;
+        <input id="modificar" type="text" (click)="updateTemaMusical(temamusical)" class="btn btn-info" value="Modificar"
+            style="width: 132px; margin-left: -6px;" [disabled]="!temaMusicalForm.form.valid" />
+        <button id="cancelar" type="button" (click)="LimpiarCampos()" class="btn btn-danger"
+            style="margin-left: 10px;">Cancelar</button>
+    </form>
+    <!-------------------------------- Comienza Busqueda -------------------------------->
+
+    <div style="margin-left: 50%; margin-top: -132px;" class="row">
+        <div class="col-xs-5">
+            <label id="inputBuscar" class="form-label" for="titulo">Buscar por Titulo:&nbsp;</label>
+            <input type="text" class="form-control" [(ngModel)]="tituloBuscado" />
+            <br>
+            <button id="buscar" type="button" class="btn btn-success" (click)="BuscarTemaMusical()">Buscar</button>
+        </div>
+    </div>
+
+    <!-------------------------------- Comienza Listado -------------------------------->
+    <div style="margin-bottom: 50px;"></div>
+    <h2>Listado de Temas Musicales</h2>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Titulo</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let temamusical of temasmusicales">
+                <td>
+                    {{temamusical.titulo}}
+                </td>
+                <td>
+                    {{temamusical.autor}}
+                </td>
+                <td>
+                    <button (click)="modificaDato(temamusical.id)" type="button"
+                        class="btn btn-info">Modificar</button>&nbsp;
+                    <button (click)="setConfirmDelete(temamusical)" type="button" class="btn btn-danger">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

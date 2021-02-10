@@ -1,0 +1,114 @@
+<h2>Consultar programas que conduce un locutor:</h2>
+
+<button (click)="MuestraLoc()" type="button" class="btn btn-primary" style="margin-left: 720px; margin-top: -80px;">Mostrar/Ocultar Locutores</button>
+
+<div *ngIf="!cargaLocBool">
+    <div style="margin-bottom: 20px;"></div>
+    <h2>Listado de Locutores</h2>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let locutor of locutores">
+                <td>
+                    {{locutor.nombre}}
+                </td>
+                <td>
+                    {{locutor.apellido}}
+                </td>
+                <td>
+                    {{locutor.dni}}
+                </td>
+                <td>
+                    <button type="button" class="btn btn-info" (click)="getProgramasPorLocutor(locutor)">Consultar Programas</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="!progPorLoc && !cargaLocBool">
+    <div style="margin-bottom: 50px;"></div>
+    <h2>Programas que conduce el Locutor <span style="color:#17A2B8;">{{locutortemp.nombre}} {{locutortemp.apellido}}</span></h2>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Titulo</th>
+                <th scope="col">Dia</th>
+                <th scope="col">Horario</th>
+                <th scope="col">Duracion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let programa of programasPorLoc">
+                <td>
+                    {{programa.tituloprograma}}
+                </td>
+                <td>
+                    {{programa.dia}}
+                </td>
+                <td>
+                    {{programa.horarioemision}}
+                </td>
+                <td>
+                    {{programa.duracion}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>Consultar programas emitidos en una fecha: </h2>
+<button (click)="MuestraProg()" type="button" class="btn btn-primary" style="margin-left: 720px; margin-top: -80px;">Mostrar/Ocultar Programas</button>
+
+<div *ngIf="!cargaPogrBool" style="width: 180px;">
+    <input id="dia" class="form-control" type="date" name="dia" placeholder="Dia..." [(ngModel)]="fechaprograma">
+    <button (click)="getProgramasPorFecha()" class="btn btn-info" style="margin-left: 720px; margin-top: -80px;">Consultar</button>    
+</div>
+
+<!-- <button type="button" class="btn btn-info" (click)="getProgramasPorFecha()">Consultar Programas</button> -->
+
+<div *ngIf="!cargaPogrBool && !cargaProgFec">
+    <div style="margin-bottom: 50px;"></div>
+    <h2>Programas que se emiten en la fecha <span style="color:#17A2B8;">{{fechaprograma}}</span></h2>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Titulo</th>
+                <th scope="col">Dia</th>
+                <th scope="col">Horario</th>
+                <th scope="col">Duracion</th>
+                <th scope="col">Director</th>
+                <th scope="col">Locutor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let programa of programasPorFec">
+                <td>
+                    {{programa.tituloprograma}}
+                </td>
+                <td>
+                    {{programa.dia}}
+                </td>
+                <td>
+                    {{programa.horarioemision}}
+                </td>
+                <td>
+                    {{programa.duracion}}
+                </td>
+                <td>
+                    {{programa.fkdirectorid}}
+                </td>
+                <td>
+                    {{programa.fklocutoresid}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

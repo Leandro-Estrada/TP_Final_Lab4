@@ -1,0 +1,75 @@
+<section class="wrap">
+    <!-- Banner -->
+    <div id="banner">
+        <h1>Sistema de Gestion de Radio</h1>
+    </div>
+    <!-- End Banner -->
+    <!-- Cards -->
+    <div id="cards">
+        <div class="card" [routerLink]="['/directores']">
+            <p class="icon"> U </p>
+            <h2 class="category">Directores</h2>
+            <p class="descripcion">
+                Administracion de Directores
+            </p>
+        </div>
+        <div class="card" [routerLink]="['/locutores']">
+            <p class="icon"> U </p>
+            <h2 class="category">Locutores</h2>
+            <p class="descripcion">
+                Administracion de <br> Locutores
+            </p>
+        </div>
+        <div class="card" [routerLink]="['/programas']">
+            <p class="icon"> S </p>
+            <h2 class="category">Programas</h2>
+            <p class="descripcion">
+                Administracion de Programas
+            </p>
+        </div>
+        <div class="card" [routerLink]="['/periodos']">
+            <p class="icon"> J </p>
+            <h2 class="category">Periodos</h2>
+            <p class="descripcion">
+                Administracion de <br> Periodos
+            </p>
+        </div>
+        <div class="card" style="margin-left: 26.5%;" [routerLink]="['/temasmusicales']">
+            <p class="icon"> u </p>
+            <h2 class="category">Temas Musicales</h2>
+            <p class="descripcion">
+                Administracion de temas Musicales
+            </p>
+        </div>
+        <div class="card" [routerLink]="['/propagandas']">
+            <p class="icon"> M </p>
+            <h2 class="category">Propagandas</h2>
+            <p class="descripcion">
+                Administracion de propagandas.
+            </p>
+        </div>
+    </div>
+    <!--End Cards-->
+
+    <!-- <div id="startbutton">
+        <div id="start"><a href="#">Comenzar</a></div>
+    </div> -->
+</section>
+
+<!-- Footer -->
+<div class="clearfix">
+    <footer id="footer">
+        <span id="github"> <a href="https://github.com/Leandro-Estrada"> &copy; Desarrollado por Leandro Estrada
+            </a></span>
+        <div class="social">
+            <span id="facebook overlay"> <a href="https://www.facebook.com/">f</a></span>
+            <span id="twitter overlay"> <a href="https://twitter.com/">t</a></span>
+        </div>
+    </footer>
+</div>
+
+<!-- End Footer -->
+
+<section id="content">
+    <router-outlet></router-outlet>
+</section>

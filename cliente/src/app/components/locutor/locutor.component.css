@@ -1,0 +1,12 @@
+.form_error{
+	font-size: 13px;
+	padding: 3px;
+	background: red;
+	color:white;
+	margin-left: 5px;
+}
+
+form input[disabled]{
+	opacity: 0.4;
+	cursor: not-allowed;
+}

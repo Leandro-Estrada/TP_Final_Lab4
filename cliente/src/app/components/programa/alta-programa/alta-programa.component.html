@@ -1,0 +1,119 @@
+<h1>Programas</h1>
+<form #periodoForm="ngForm" (ngSubmit)="onSubmit(periodoForm)">
+    <div class="row" style="margin-left: 3px;">
+        <div class="col-xs-5">
+            <label class="form-label" for="name">Titulo:</label>
+            <input id="titulo" class="form-control" type="text" name="titulo" placeholder="Titulo..." #titulo='ngModel'
+                [(ngModel)]="programa.tituloprograma" required>
+            <span class="form_error" *ngIf="titulo.touched && !titulo.valid">
+                El titulo es obligatorio
+            </span>
+        </div>
+        <div class="col-xs-5">
+            <label class="form-label" for="name">Dia:</label>
+            <input id="dia" class="form-control" type="date" name="dia" placeholder="Dia..." #dia='ngModel'
+                [(ngModel)]="programa.dia" required>
+            <span class="form_error" *ngIf="dia.touched && !dia.valid">
+                El dia es obligatorio
+            </span>
+        </div>
+        <div class="col-xs-5">
+            <label class="form-label" for="name">Horario:</label>
+            <input id="horario" class="form-control" type="time" name="horario" placeholder="Horario..."
+                #horario='ngModel' [(ngModel)]="programa.horarioemision" required>
+            <span class="form_error" *ngIf="horario.touched && !horario.valid">
+                El horario de emision es obligatorio
+            </span>
+        </div>
+        <div class="col-xs-5">
+            <label class="form-label" for="name">Duracion:</label>
+            <input id="duracion" class="form-control" type="time" name="duracion" placeholder="Duracion..."
+                #duracion='ngModel' [(ngModel)]="programa.duracion" required>
+            <span class="form_error" *ngIf="duracion.touched && !duracion.valid">
+                La duracion es obligatoria
+            </span>
+        </div>
+        <div class="col-xs-5" *ngIf="!cargaDirBool">
+            <label class="form-label" for="name">Director DNI:</label>
+            <input id="director" class="form-control" type="text" name="director" placeholder="Seleccionar..." disabled
+                #dni='ngModel' [(ngModel)]="directortemp.dni" required>
+        </div>
+        <div class="col-xs-5" *ngIf="!cargaLocBool">
+            <label class="form-label" for="name">Locutor DNI:</label>
+            <input id="locutor" class="form-control" type="text" name="locutor" placeholder="Seleccionar..." disabled
+                #dni='ngModel' [(ngModel)]="locutortemp.dni" required>
+        </div>
+            <div *ngIf="!cargaLocBool && !cargaDirBool">
+<!-- //            <button class="btn btn-success" style="margin-top: 31px;" (click)="CrearNuevoPrograma()" >Crear Nuevo Programa</button> -->
+            <input id="nuevo" type="submit" class="btn btn-success" value="Nuevo Programa" style="margin-top: 31px;"
+            [disabled]="!periodoForm.form.valid" />
+        </div>
+
+    </div>
+    <br>
+
+    <button (click)="loading=false;" type="button" class="btn btn-primary" style="margin-left: 3px;">Cargar Personal</button>
+
+    <div *ngIf="!loading">
+        <div style="margin-bottom: 50px;"></div>
+        <h2>Listado de Directores</h2>
+
+        <table class="table table-striped table-hover" *ngIf="!loading">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let director of directores">
+                    <td>
+                        {{director.nombre}}
+                    </td>
+                    <td>
+                        {{director.apellido}}
+                    </td>
+                    <td>
+                        {{director.dni}}
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-info" (click)="cargaDir(director)">Seleccionar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="!loading">
+        <div style="margin-bottom: 50px;"></div>
+        <h2>Listado de Locutores</h2>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let locutor of locutores">
+                    <td>
+                        {{locutor.nombre}}
+                    </td>
+                    <td>
+                        {{locutor.apellido}}
+                    </td>
+                    <td>
+                        {{locutor.dni}}
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-info" (click)="cargaLoc(locutor)">Seleccionar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>

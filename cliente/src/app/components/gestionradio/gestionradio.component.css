@@ -1,0 +1,441 @@
+/* Personalized Fonts */
+
+@font-face{
+    font-family: "TrebuchetMS";
+    src: url('../../../assets/css/fonts/TrebuchetMS.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: "BebasNeue";
+    src: url('../../../assets/css/fonts/BebasNeue.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: "WebSymbolsRegular";
+    src: url('../../../assets/css/fonts/websymbols-regular-webfont.eot');
+    src: url('../../../assets/css/fonts/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../assets/css/fonts/websymbols-regular-webfont.woff') format('woff'),
+         url('../../../assets/css/fonts/websymbols-regular-webfont.ttf') format('truetype'),
+         url('../../../assets/css/fonts/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
+
+    font-weight: normal;
+    font-style: normal;
+}
+/* End Personalized Fonts */
+/* ---------------------------------------------------------------------------------------------------------------------------*/
+/* ---------------------------------------------------------------------------------------------------------------------------*/
+
+/* General Style */
+
+.clearfix{
+    float: none;
+    clear: both;   
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+/* body{
+    background: url("../../../assets/img/pattern.png");
+} */
+
+.gear, .icon{
+    font-family: "WebSymbolsRegular";
+}
+
+.wrap{
+    width: 1200px;
+    margin: 0px auto;       
+}
+
+/* End General Style */
+/* ---------------------------------------------------------------------------------------------------------------------------*/
+
+/* Header */
+
+#header{
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    color: white;
+    font-family: "BebasNeue";
+}
+
+#logo{
+    float: left;
+    width: 200px;
+    background-color: #37bcf9;
+    text-align: center;
+    margin-top: 8px;
+    margin-left: 15px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 300ms;
+}
+ 
+#logo:hover{
+    border-radius: 2px;
+    color:black;
+    background-color: #ccc;
+}
+ 
+#logo .gear{
+    display: block;
+    float:left;
+    font-size: 30px;
+    margin-top: 8px;
+    margin-left: 26px;
+    animation-name: rotate-gear;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+ 
+#logo:hover .gear{
+    animation: fromBellow 500ms linear;
+}
+
+#logo h3{
+    display: block;
+    float: right;
+    margin-top: 5px;
+    margin-right: 65px;
+    font-size: 40px;
+    transition: all 300ms;
+}
+ 
+#logo:hover h3{
+    animation: fromRight 300ms linear;
+}
+
+@keyframes rotate-gear{
+    from{
+        transform: rotateZ(0deg);
+    }
+    to{
+        transform: rotateZ(360deg);
+    }
+}
+
+@keyframes fromBellow{
+    0%{
+        transform: translateY(0%);
+    }
+    50%{
+        transform: translateY(200%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
+
+@keyframes fromRight {
+    from{
+        transform: translateX(200%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+}
+
+/* ---------------------------------------------------------------------------------------------------------------------------*/
+
+/* Menu */
+
+/* #menu{
+    float: right;
+    height: 70px;
+    background: transparent;
+}
+
+#menu ul li{
+    font-size: 24px;
+    display: inline-block;
+    margin: 0px 20px 0px 20px;
+    letter-spacing: 1px;
+    line-height: 70px;
+}
+
+#menu ul li a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    transition: all 200ms;
+}
+
+#menu ul li a:hover{
+    color:#37bcf9;
+    transform: scale(1.2,1.2);
+} */
+/* End menu */
+/* End Header */
+/* ---------------------------------------------------------------------------------------------------------------------------*/
+
+/* Banner */
+
+#banner{
+
+    width: 95.6%;
+    height: 120px;
+    border: 10px solid white;
+    box-shadow: 0px 0px 2px gray;
+    background-image: url("../../../assets/img/BACK2.png");
+    background-position: -260px -260px;
+    margin: 20px auto;
+    animation: moveimg 5s linear;
+    overflow: hidden;
+
+}
+@keyframes moveimg{
+    0%{background-position: 0px 0px;}
+    100%{background-position: -260px -260px;}
+}
+
+#banner h1{
+    display: block;
+    width: 850px;   
+    font-family: "BebasNeue"; 
+    font-weight: normal; 
+    text-align: center;
+    color: white;
+    font-size: 45px;
+    letter-spacing: 2px;
+    margin: 27px auto;
+    text-shadow: 2px 2px 1px black;
+    animation: showText 5s linear;
+}
+
+@keyframes showText{
+    0%{
+        transform: translateX(-600%) scale(5,5);
+        opacity: 1;
+    }
+    50%{
+        transform: translateX(600%) scale(5,5);
+        opacity: 1;
+    }
+    75%{
+        transform: translateX(-600%) scale(5,5);
+        text-shadow: none;
+        color: transparent;
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0%) scale(1,1);
+        text-shadow: 2px 2px 1px black;
+        color: white;
+        opacity: 1;}
+}
+/* End Banner */
+/* ---------------------------------------------------------------------------------------------------------------------------*/
+
+/* Cards */
+
+#cards{ margin-left: 2%;}
+    
+.card{
+    float: left;
+    width: 220px;
+    height: 305px;
+    
+    border: 1px solid#CCC;
+    box-shadow: 1px 1px 2px #ddd;
+    background: white;
+    overflow: hidden;
+    cursor: pointer;
+    margin:30px;
+    margin-top: 40px;
+    transition: all 300ms;
+}
+
+.card .icon{
+        display: block;
+        width: 100%;
+        height: 130px;
+        font-size: 50px;
+        line-height: 110px;
+        text-align: center;
+        margin: 0px auto;
+        transition: all 300ms;
+}
+
+.card:hover .icon{
+    font-size: 70px;
+    color:#37bcf9;
+    animation: showIcon 300ms linear;
+}
+
+@keyframes showIcon{
+    from{transform: translateY(-200%);}
+    to{transform: translateY(0%);}
+}
+
+.card:hover .category{
+    transition: all 300ms;
+    color: white;
+    animation: showCategory 400ms linear;
+}
+
+@keyframes showCategory{
+    from{
+        transform: translateY(-300%);
+        color: black;
+    }
+    to{
+        transform:translateY(0%);
+        color:white;
+    }
+}
+
+.card:hover{
+    background-color: #343A40;
+}
+
+.card .category{
+        width: 100%;
+        height: 50px;
+        font-family: "TrebuchetMS";
+        font-size: 21px;
+        font-weight: bold;
+        text-align: center;
+        color: #00538c;
+}
+
+.card .descripcion{
+    text-align: center;
+    color: #0371bb;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 17px;
+    transition: all 300ms;
+}
+
+.card:hover .descripcion{
+    color:white;
+    animation: showDescripcion 400ms linear;
+}
+
+@keyframes showDescripcion{
+    from{
+        transform: translateX(-300%);
+        color: black;
+    }
+    to{
+        transform: translateX(0%);
+        color: white;
+    }
+}
+
+/* End Cards */
+/* ---------------------------------------------------------------------------------------------------------------------------*/
+
+/* Start button */
+
+#startbutton{
+    width: 800px;
+    float: left;
+    margin-left: 20%;
+    margin-top: 60px;
+}
+
+#start{
+    width: 80%;
+    height: 100px;
+    border: 1px solid #CCC;
+    padding: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: white;
+    color: black;
+    box-shadow:  1px 1px  2px solid #DDD;
+    line-height: 100px;
+    text-align: center;
+    transition: all 1s;
+}
+
+#start a{
+    display: block;
+    font-family: "BebasNeue";
+    font-size: 40px;
+    letter-spacing: 3px;
+    text-decoration: none;
+    color:#00538c;
+    transition: all 1s;
+}  
+
+#start:hover{
+    border: 10px solid #37bcf9;
+    border-radius:240px;
+    box-shadow: 0px 0px 10px gray;
+    background-color:#333 ;
+    animation: blink 3s infinite linear;
+}
+
+#start:hover a{
+    text-shadow: 1px 1px 1px black, 1px 2px 1px black, 1px 3px 1px black, 1px 4px 1px black, 1px 5px 1px black, 1px 5px 1px black;
+    color: white;
+}
+
+@keyframes blink{
+    0%{border: 10px solid #37bcf9;}
+    25%{border: 10px solid green;}
+    50%{border: 10px solid yellow;}
+    75%{border: 10px solid white;}
+    100%{border: 10px solid #37bcf9;}
+}
+
+/* End start button */
+/* ---------------------------------------------------------------------------------------------------------------------------*/
+
+/* Footer */
+
+#footer{
+    width: 100%;
+    height: 5% auto;
+    margin: 0% auto;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #343A40;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #CCC;
+    font-family: "BebasNeue";
+    font-size: 17px;
+    box-shadow: 0px 0px 2px gray;
+    /* position: fixed; */
+    bottom: 0%;  
+}
+
+#footer #github a{
+    text-decoration: none;
+    font-size: 17px;
+    color: #CCC;
+    transition: all 300ms;  
+}
+
+#footer #github a:hover{
+    color:#37bcf9;
+}
+
+.social{
+    display: inline;
+}
+
+.social a{
+    text-decoration: none;
+    margin-left: 5px;
+    font-family: 'WebSymbolsRegular';
+    color: #CCC;
+    transition: all 300ms;  
+}
+
+.social a:hover{
+    color:#37bcf9;
+}
+
+/* End Footer */

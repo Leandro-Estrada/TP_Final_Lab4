@@ -1,0 +1,94 @@
+<div class="container-fluid">
+    <!-------------------------------- Comienza formulario de carga -------------------------------->
+    <h2>Directores</h2>
+    <form #directorForm="ngForm" (ngSubmit)="onSubmit(directorForm)">
+        <div class="row" style="margin-left: 3px;">
+            <div class="col-xs-5">
+                <label class="form-label" for="name">Nombre:</label>
+                <input id="name" class="form-control" type="text" name="name" placeholder="Nombre..." #name='ngModel'
+                    [(ngModel)]="director.nombre" required>
+                <span class="form_error" *ngIf="name.touched && !name.valid">
+                    El nombre es obligatorio
+                </span>
+            </div>
+            <div class="col-xs-5" style="margin-left: 3px;">
+                <label class="form-label" for="lastname">Apellido:</label>
+                <input id="lastname" class="form-control" type="text" name="lastname" placeholder="Apellido..."
+                    #lastname='ngModel' [(ngModel)]="director.apellido" required>
+                <span class="form_error" *ngIf="lastname.touched && !lastname.valid">
+                    El apellido es obligatorio
+                </span>
+            </div>
+            <div class="col-xs-5" style="margin-left: 3px;">
+                <label class="form-label" for="dni">DNI:</label>
+                <input id="dni" class="form-control" type="number" name="dni" placeholder="DNI..." #dni='ngModel'
+                    [(ngModel)]="director.dni" min="1000000" max="99000000" required>
+                <span class="form_error" *ngIf="dni.touched && !dni.valid">
+                    El dni es obligatorio
+                </span>
+            </div>
+        </div>
+        <br>
+        <input id="nuevo" type="submit" class="btn btn-success" value="Nuevo Director" style="margin-left: 3px;"
+            [disabled]="!directorForm.form.valid" />&nbsp;
+        <input id="modificar" type="text" (click)="updateDirector(director)" class="btn btn-info" value="Modificar"
+            style="width: 132px; margin-left: -6px;" [disabled]="!directorForm.form.valid" />
+        <button id="cancelar" type="button" (click)="LimpiarCampos()" class="btn btn-danger"
+            style="margin-left: 10px;">Cancelar</button>
+    </form>
+    <!-------------------------------- Comienza Busqueda -------------------------------->
+
+    <div style="margin-left: 50%; margin-top: -132px;" class="row">
+        <div class="col-xs-5">
+            <label id="inputBuscar" class="form-label" for="dni">Buscar por DNI:&nbsp;</label>
+            <input type="text" class="form-control" [(ngModel)]="dniBuscado" />
+            <br>
+            <button id="buscar" type="button" class="btn btn-success" (click)="BuscarDirector()">Buscar</button>
+        </div>
+    </div>
+
+    <!-------------------------------- Comienza Listado -------------------------------->
+    <div style="margin-bottom: 50px;"></div>
+    <h2>Listado de Directores</h2>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let director of directores">
+                <td>
+                    {{director.nombre}}
+                </td>
+                <td>
+                    {{director.apellido}}
+                </td>
+                <td>
+                    {{director.dni}}
+                </td>
+                <td>
+                    <button (click)="modificaDato(director.id)" type="button"
+                        class="btn btn-info">Modificar</button>&nbsp;
+                    <button (click)="setConfirmDelete(director)" type="button" class="btn btn-danger">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- <button (click)="updateDirector(director.id)">Modificar</button>
+<p *ngIf="confirmDelete == false">
+    <button (click)="setConfirmDelete(true)">Eliminar</button>
+</p>
+
+<p *ngIf="confirmDelete == true">
+    <span>¿Eliminar definitivamente?</span>
+    <button (click)="setConfirmDelete(false)">Cancelar</button>
+    <button (click)="deleteDirector(director.id)">Eliminar definitivamente</button>
+</p> -->
