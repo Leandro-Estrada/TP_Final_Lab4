@@ -110,7 +110,7 @@ export class ProgramaComponent implements OnInit {
   }
 
   setConfirmDelete(programa: Programa) {
-    let response = confirm("Eliminar de forma permanente este programa?\n\nFecha: " + programa.duracion);
+    let response = confirm("Eliminar de forma permanente este programa?\n\nTitulo: " + programa.tituloprograma);
     if (response) {
       this.deletePeriodo(parseInt(programa.id));
     }
