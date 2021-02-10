@@ -19,13 +19,13 @@ seleccionar el locutor y mostrar la lista de sus programas.
 [Diagrama de Clases](https://github.com/Leandro-Estrada/TP_Final_Lab4/blob/main/docs/Diagrama%20de%20Clases%20TP%20FINAL%20lab4.jpg)
 
 **Requisitos de instalación**
- -NodeJS
- -PostgreSQL
- -Clonar este repositorio en una carpeta local
+ - NodeJS
+ - PostgreSQL
+ - Clonar este repositorio en una carpeta local
 
 ### Configuración del servidor
- -npm install
- -npm run dev
+ - npm install
+ - npm run dev
 
 ### Configuración del cliente
  - npm install
